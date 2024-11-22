@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .converter {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <label for="fahrenheit">Температура за Фаренгейтом</label>
+        <input type="text" id="fahrenheit" placeholder="Введіть значення">
+
+        <label for="celsius">Температура за Цельсієм</label>
+        <input type="text" id="celsius" placeholder="Введіть значення">
+    </div>
+
+    <script>
+        //доступ до полів введення
+        const fahrenheitInput = document.getElementById('fahrenheit');
+        const celsiusInput = document.getElementById('celsius');
+
+        // функція для перетворення Фаренгейт -> Цельсій
+        function fahrenheitToCelsius(f) {
+            return (5 / 9) * (f - 32);
+        }
+
+        // функція для перетворення Цельсій -> Фаренгейт
+        function celsiusToFahrenheit(c) {
+            return (c * 9 / 5) + 32;
+        }
+
+        //обробники подій
+        fahrenheitInput.addEventListener('input', () => {
+            const fahrenheitValue = parseFloat(fahrenheitInput.value);
+            if (!isNaN(fahrenheitValue)) {
+                celsiusInput.value = fahrenheitToCelsius(fahrenheitValue).toFixed(2);
+            } else {
+                celsiusInput.value = '';
+            }
+        });
+
+        celsiusInput.addEventListener('input', () => {
+            const celsiusValue = parseFloat(celsiusInput.value);
+            if (!isNaN(celsiusValue)) {
+                fahrenheitInput.value = celsiusToFahrenheit(celsiusValue).toFixed(2);
+            } else {
+                fahrenheitInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
