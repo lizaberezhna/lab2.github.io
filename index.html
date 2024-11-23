@@ -15,22 +15,37 @@
             max-width: 300px;
             gap: 10px;
         }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
         label {
             font-weight: bold;
         }
         input[type="text"] {
             padding: 5px;
             font-size: 16px;
+            flex: 1;
+        }
+        .unit {
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <div class="converter">
-        <label for="fahrenheit">Температура за Фаренгейтом</label>
-        <input type="text" id="fahrenheit" placeholder="Введіть значення">
+        <div class="input-group">
+            <label for="fahrenheit">Температура за Фаренгейтом:</label>
+            <input type="text" id="fahrenheit" placeholder="Введіть значення">
+            <span class="unit">°F</span>
+        </div>
 
-        <label for="celsius">Температура за Цельсієм</label>
-        <input type="text" id="celsius" placeholder="Введіть значення">
+        <div class="input-group">
+            <label for="celsius">Температура за Цельсієм:</label>
+            <input type="text" id="celsius" placeholder="Введіть значення">
+            <span class="unit">°C</span>
+        </div>
     </div>
 
     <script>
@@ -53,7 +68,7 @@
             const fahrenheitValue = parseFloat(fahrenheitInput.value);
             if (!isNaN(fahrenheitValue)) {
                 const celsiusValue = fahrenheitToCelsius(fahrenheitValue);
-                celsiusInput.value = `${celsiusValue.toFixed(2)} &deg;C`;
+                celsiusInput.value = celsiusValue.toFixed(2);
             } else {
                 celsiusInput.value = '';
             }
@@ -63,19 +78,10 @@
             const celsiusValue = parseFloat(celsiusInput.value);
             if (!isNaN(celsiusValue)) {
                 const fahrenheitValue = celsiusToFahrenheit(celsiusValue);
-                fahrenheitInput.value = `${fahrenheitValue.toFixed(2)} &deg;F`;
+                fahrenheitInput.value = fahrenheitValue.toFixed(2);
             } else {
                 fahrenheitInput.value = '';
             }
-        });
-
-        // Очищення зайвих символів для введення
-        fahrenheitInput.addEventListener('focus', () => {
-            fahrenheitInput.value = fahrenheitInput.value.replace(' &deg;F', '');
-        });
-
-        celsiusInput.addEventListener('focus', () => {
-            celsiusInput.value = celsiusInput.value.replace(' &deg;C', '');
         });
     </script>
 </body>
