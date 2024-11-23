@@ -53,7 +53,7 @@
             const fahrenheitValue = parseFloat(fahrenheitInput.value);
             if (!isNaN(fahrenheitValue)) {
                 const celsiusValue = fahrenheitToCelsius(fahrenheitValue);
-                celsiusInput.value = `${celsiusValue.toFixed(2)} °C`;
+                celsiusInput.value = `${celsiusValue.toFixed(2)} &deg;C`;
             } else {
                 celsiusInput.value = '';
             }
@@ -63,7 +63,7 @@
             const celsiusValue = parseFloat(celsiusInput.value);
             if (!isNaN(celsiusValue)) {
                 const fahrenheitValue = celsiusToFahrenheit(celsiusValue);
-                fahrenheitInput.value = `${fahrenheitValue.toFixed(2)} °F`;
+                fahrenheitInput.value = `${fahrenheitValue.toFixed(2)} &deg;F`;
             } else {
                 fahrenheitInput.value = '';
             }
@@ -71,11 +71,11 @@
 
         // Очищення зайвих символів для введення
         fahrenheitInput.addEventListener('focus', () => {
-            fahrenheitInput.value = fahrenheitInput.value.replace(' °F', '');
+            fahrenheitInput.value = fahrenheitInput.value.replace(' &deg;F', '');
         });
 
         celsiusInput.addEventListener('focus', () => {
-            celsiusInput.value = celsiusInput.value.replace(' °C', '');
+            celsiusInput.value = celsiusInput.value.replace(' &deg;C', '');
         });
     </script>
 </body>
