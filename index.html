@@ -34,26 +34,25 @@
     </div>
 
     <script>
-        // Отримуємо доступ до полів введення
+        //доступ до полів введення
         const fahrenheitInput = document.getElementById('fahrenheit');
         const celsiusInput = document.getElementById('celsius');
 
-        // Функція для перетворення Фаренгейт -> Цельсій
+        // функція для перетворення Фаренгейт -> Цельсій
         function fahrenheitToCelsius(f) {
             return (5 / 9) * (f - 32);
         }
 
-        // Функція для перетворення Цельсій -> Фаренгейт
+        // функція для перетворення Цельсій -> Фаренгейт
         function celsiusToFahrenheit(c) {
             return (c * 9 / 5) + 32;
         }
 
-        // Додамо обробники подій
+        //обробники подій
         fahrenheitInput.addEventListener('input', () => {
             const fahrenheitValue = parseFloat(fahrenheitInput.value);
             if (!isNaN(fahrenheitValue)) {
-                const celsiusValue = fahrenheitToCelsius(fahrenheitValue);
-                celsiusInput.value = `${celsiusValue.toFixed(2)} °C`;
+                celsiusInput.value = fahrenheitToCelsius(fahrenheitValue).toFixed(2);
             } else {
                 celsiusInput.value = '';
             }
@@ -62,20 +61,10 @@
         celsiusInput.addEventListener('input', () => {
             const celsiusValue = parseFloat(celsiusInput.value);
             if (!isNaN(celsiusValue)) {
-                const fahrenheitValue = celsiusToFahrenheit(celsiusValue);
-                fahrenheitInput.value = `${fahrenheitValue.toFixed(2)} °F`;
+                fahrenheitInput.value = celsiusToFahrenheit(celsiusValue).toFixed(2);
             } else {
                 fahrenheitInput.value = '';
             }
-        });
-
-        // Очищення зайвих символів для введення
-        fahrenheitInput.addEventListener('focus', () => {
-            fahrenheitInput.value = fahrenheitInput.value.replace(' °F', '');
-        });
-
-        celsiusInput.addEventListener('focus', () => {
-            celsiusInput.value = celsiusInput.value.replace(' °C', '');
         });
     </script>
 </body>
